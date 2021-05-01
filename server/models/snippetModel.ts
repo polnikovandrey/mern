@@ -8,4 +8,4 @@ const snippetSchema: mongoose.Schema = new mongoose.Schema({
     timestamps: true
 });
 
-export const Snippet: mongoose.Model<mongoose.Document> = mongoose.model('snippet', snippetSchema);
+export const Snippet = mongoose.model('snippet', snippetSchema);
