@@ -13,3 +13,13 @@ app.use(express.json());
 // Setup routers
 // use() method makes possible to separate and group different rest-services to a number of folders/files.
 app.use('/snippet', require('./routers/snippetRouter'));
+
+mongoose.connect('mongodb+srv://deepblue:3WINFZPNP410evdN@cluster0.j9utz.mongodb.net/mainDb?retryWrites=true&w=majority',
+    { useNewUrlParser: true, useUnifiedTopology: true },
+    error => {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log('Connected to MongoDB');
+        }
+    });
