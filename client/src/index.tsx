@@ -1,8 +1,14 @@
-import React from "react";
+import React, {DOMElement} from "react";
 import ReactDOM from "react-dom";
 
-const name: string = 'Andrey Polnikov';
-const element = <div style={{background: "orange"}}>
-    <h1 className="red">Hello, {name}</h1>
-</div>;
-ReactDOM.render(element, document.getElementById('root'));
+function clock() {
+    ReactDOM.render(
+        (
+            <div>
+                <h1>Clock</h1>
+                <p>It's {new Date().toLocaleTimeString()}</p>
+            </div>
+        ),
+        document.getElementById('root'));
+}
+setInterval(clock, 1000);
