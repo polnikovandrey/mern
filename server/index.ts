@@ -1,5 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 // Setup express server
 const app = express();
@@ -14,7 +17,7 @@ app.use(express.json());
 // use() method makes possible to separate and group different rest-services to a number of folders/files.
 app.use('/snippet', require('./routers/snippetRouter'));
 
-mongoose.connect('mongodb+srv://deepblue:3WINFZPNP410evdN@cluster0.j9utz.mongodb.net/mainDb?retryWrites=true&w=majority',
+mongoose.connect(process.env.MDB_CONNECT_STRING || '',
     { useNewUrlParser: true, useUnifiedTopology: true },
     error => {
         if (error) {

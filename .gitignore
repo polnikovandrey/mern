@@ -1,5 +1,6 @@
 # Common
 .idea
+.env
 *.iml
 *.js
 *.jsx
@@ -26,4 +27,3 @@ client/yarn-error.log*
 
 # Server
 server/node_modules
-
