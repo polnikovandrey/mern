@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
 
-function App(properties: any) {
-    const message: string = properties.message;
+
+function App() {
+    const [message, setMessage] = useState(1);
+    setTimeout(() => setMessage(message + 1), 1000);
     return (
         <>
             <Welcome user="John Doe" message={message}/>
@@ -21,4 +23,4 @@ function Welcome(properties: any) {
     );
 }
 
-ReactDOM.render(<App message="to the React playground"/>, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'));
