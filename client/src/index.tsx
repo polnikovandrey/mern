@@ -1,26 +1,19 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import ReactDOM from "react-dom";
 
 
 function App() {
-    const [message, setMessage] = useState(1);
-    useEffect(() => {
-        setTimeout(() => setMessage(message + 1), 1000);
-    }, []);
-    return (
-        <>
-            <Welcome user="John Doe" message={message}/>
-            <Welcome user="Jane Doe" message={message}/>
-            <Welcome user="Pete Doe" message={message}/>
-        </>
-    );
-}
 
-function Welcome(properties: any) {
+    const [clicks, setClicks] = useState(0);
+
+    function handleClick() {
+        setClicks(clicks + 1);
+    }
+
     return (
         <>
-            <h1>Welcome, {properties.user}</h1>
-            <p>{properties.message}</p>
+            <button onClick={handleClick}>Click me</button>
+            <p>{clicks}</p>
         </>
     );
 }
