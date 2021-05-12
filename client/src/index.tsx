@@ -1,10 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom";
 
 
 function App() {
     const [message, setMessage] = useState(1);
-    setTimeout(() => setMessage(message + 1), 1000);
+    useEffect(() => {
+        setTimeout(() => setMessage(message + 1), 1000);
+    }, []);
     return (
         <>
             <Welcome user="John Doe" message={message}/>
