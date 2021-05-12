@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-function clock() {
-    ReactDOM.render(
-        (
-            <div>
-                <h1>Clock</h1>
-                <p>It's {new Date().toLocaleTimeString()}</p>
-            </div>
-        ),
-        document.getElementById('root'));
+function Welcome(properties: any) {
+    return <h1>Welcome, {properties.user}</h1>;
 }
-setInterval(clock, 1000);
+
+const toRender = <div>
+    <Welcome user="John Doe"/>
+    <Welcome user="Jane Doe"/>
+    <Welcome user="Peter Doe"/>
+</div>
+
+ReactDOM.render(toRender, document.getElementById('root'));
