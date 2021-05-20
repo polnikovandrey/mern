@@ -1,27 +1,26 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, FormEvent} from "react";
 import ReactDOM from "react-dom";
 
 function App() {
 
-    const snippets: Array<{ title: string }> = [
-        { title: 'Snippet1' },
-        { title: 'Snippet2' },
-        { title: 'Snippet3' }
-    ];
+    const [formUserName, setFormUserName] = useState('');
+    const [formPassword, setFormPassword] = useState('');
 
-    function renderSnippets() {
-        return snippets.map(({title}, index) => {
-            return <Snippet title={title} key={index}/>;
-        })
+    function sendData(event: FormEvent): void {
+        event.preventDefault();
+        setFormUserName('');
+        setFormPassword('');
     }
 
     return (
-        <>{renderSnippets()}</>
+        <>
+            <form onSubmit={sendData}>
+                <input type="text" placeholder="Username" value={formUserName} onChange={(event) => setFormUserName(event.target.value)}/>
+                <input type="password" placeholder="Password" value={formPassword} onChange={(event) => setFormPassword(event.target.value)}/>
+                <button type="submit">Log in</button>
+            </form>
+        </>
     );
-}
-
-function Snippet(properties: any) {
-    return <h1>{properties.title}</h1>
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));
