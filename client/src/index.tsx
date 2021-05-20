@@ -3,28 +3,25 @@ import ReactDOM from "react-dom";
 
 function App() {
 
+    const snippets: Array<{ title: string }> = [
+        { title: 'Snippet1' },
+        { title: 'Snippet2' },
+        { title: 'Snippet3' }
+    ];
+
+    function renderSnippets() {
+        return snippets.map(({title}, index) => {
+            return <Snippet title={title} key={index}/>;
+        })
+    }
 
     return (
-        <>
-            <Clock/>
-            <Hello/>
-            <Clock/>
-        </>
+        <>{renderSnippets()}</>
     );
 }
 
-function Clock() {
-    const [time, setTime] = useState(new Date().toLocaleTimeString());
-
-    useEffect(() => {
-        setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
-    }, []);
-    return <p>It's currently {time}</p>
-
-}
-
-function Hello() {
-    return <h1>Hello</h1>;
+function Snippet(properties: any) {
+    return <h1>{properties.title}</h1>
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));
