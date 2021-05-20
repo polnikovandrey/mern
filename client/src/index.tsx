@@ -1,26 +1,45 @@
-import React, {useState, useEffect, FormEvent} from "react";
+import React, {useEffect, useState} from "react";
 import ReactDOM from "react-dom";
 
-function App() {
+function App(): JSX.Element {
 
-    const [formUserName, setFormUserName] = useState('');
-    const [formPassword, setFormPassword] = useState('');
+    const [showMessage, setShowMessage] = useState(false);
 
-    function sendData(event: FormEvent): void {
-        event.preventDefault();
-        setFormUserName('');
-        setFormPassword('');
-    }
+    useEffect(() => {
+        console.log('Component update side effect');
+    });
+
+    useEffect(() => {
+        console.log('Component specific state update side effect');
+    }, [showMessage]);
 
     return (
         <>
-            <form onSubmit={sendData}>
-                <input type="text" placeholder="Username" value={formUserName} onChange={(event) => setFormUserName(event.target.value)}/>
-                <input type="password" placeholder="Password" value={formPassword} onChange={(event) => setFormPassword(event.target.value)}/>
-                <button type="submit">Log in</button>
-            </form>
+            <button onClick={() => setShowMessage(!showMessage)}>Toggle message</button>
+            {showMessage && (
+                <>
+                    <Random/>
+                    <p>Some message</p>
+                </>
+            )}
         </>
     );
+}
+
+function Random(): JSX.Element {
+
+    const [randomNumber, setRandomNumber] = useState(Math.random());
+
+    useEffect(() => {
+        console.log('Component mount side effect');
+        const intervalId = setInterval(() => setRandomNumber(Math.random()), 1000);
+        return () => {
+            console.log('Component unmount side effect');
+            clearInterval(intervalId);
+        };
+    }, []);
+
+    return <h1>{randomNumber}</h1>;
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));
