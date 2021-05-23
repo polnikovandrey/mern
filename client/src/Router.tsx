@@ -1,9 +1,11 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Navbar from "./components/misc/Navbar";
 
 function Router(): JSX.Element {
 	return (
 		<BrowserRouter>
+			<Navbar/>
 			<Switch>
 				<Route exact path="/">Homepage</Route>
 				<Route path="/login">Login</Route>
