@@ -19,7 +19,11 @@ function Home(): JSX.Element {
 	}
 
 	function renderSnippets() {
-		return snippets.map((snippet, index) => {
+		const snippetsClone = [...snippets];
+		const sortedSnippets = snippetsClone.sort((a: any, b: any) => {
+			return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+		});
+		return sortedSnippets.map((snippet, index) => {
 			return <Snippet key={index} snippet={snippet}/>
 		});
 	}
@@ -32,6 +36,15 @@ function Home(): JSX.Element {
 			code: editorCode ? editorCode : undefined
 		}
 		await Axios.post("http://localhost:5000/snippet", snippetData);
+		getSnippets();
+		closeEditor();
+	}
+
+	function closeEditor(): void {
+		setNewSnippetEditorOpen(false);
+		setEditorTitle("");
+		setEditorDescription("");
+		setEditorCode("");
 	}
 
 	return (
@@ -47,6 +60,7 @@ function Home(): JSX.Element {
 						<label htmlFor="editor-code">Code</label>
 						<textarea id="editor-code" value={editorCode} onChange={(e) => setEditorCode(e.target.value)}/>
 						<button type="submit">Save snippet</button>
+						<button type="button" onClick={() => closeEditor()}>Cancel</button>
 					</form>
 				</div>
 			)}
