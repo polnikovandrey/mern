@@ -22,7 +22,7 @@ function Home(): JSX.Element {
 			return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
 		});
 		return sortedSnippets.map((snippet, index) => {
-			return <Snippet key={index} snippet={snippet}/>
+			return <Snippet key={index} snippet={snippet} getSnippets={getSnippets}/>
 		});
 	}
 
