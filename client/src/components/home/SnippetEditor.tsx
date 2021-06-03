@@ -1,11 +1,19 @@
-import React, {FormEvent, useState} from "react";
+import React, {FormEvent, useEffect, useState} from "react";
 import Axios from "axios";
 
-function SnippetEditor(properties: any): JSX.Element {
+function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}: any): JSX.Element {
 
 	const [editorTitle, setEditorTitle] = useState("");
 	const [editorDescription, setEditorDescription] = useState("");
 	const [editorCode, setEditorCode] = useState("");
+
+	useEffect(() => {
+		if (editSnippetData) {
+			setEditorTitle(editSnippetData.title ? editSnippetData.title : "");
+			setEditorDescription(editSnippetData.description ? editSnippetData.description : "");
+			setEditorCode(editSnippetData.code ? editSnippetData.code : "");
+		}
+	}, [editSnippetData]);
 
 	async function saveSnippet(submitEvent: FormEvent<HTMLFormElement>) {
 		submitEvent.preventDefault();
@@ -14,13 +22,17 @@ function SnippetEditor(properties: any): JSX.Element {
 			description: editorDescription ? editorDescription : undefined,
 			code: editorCode ? editorCode : undefined
 		}
-		await Axios.post("http://localhost:5000/snippet", snippetData);
-		properties.getSnippets();
+		if (editSnippetData) {
+			await Axios.put(`http://localhost:5000/snippet/${editSnippetData._id}`, snippetData);
+		} else {
+			await Axios.post("http://localhost:5000/snippet", snippetData);
+		}
+		getSnippets();
 		closeEditor();
 	}
 
 	function closeEditor(): void {
-		properties.setNewSnippetEditorOpen(false);
+		setSnippetEditorOpen(false);
 		setEditorTitle("");
 		setEditorDescription("");
 		setEditorCode("");

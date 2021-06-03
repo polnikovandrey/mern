@@ -1,7 +1,7 @@
 import React from "react";
 import Axios from "axios";
 
-function Snippet({snippet, getSnippets}: any): JSX.Element {
+function Snippet({snippet, getSnippets, editSnippet}: any): JSX.Element {
 
 	async function deleteSnippet() {
 		await Axios.delete(`http://localhost:5000/snippet/${snippet._id}`);
@@ -19,6 +19,7 @@ function Snippet({snippet, getSnippets}: any): JSX.Element {
 					</code>
 				</pre>
 			)}
+			<button onClick={() => editSnippet(snippet)}>Edit</button>
 			<button onClick={deleteSnippet}>Delete</button>
 		</div>
 	);
