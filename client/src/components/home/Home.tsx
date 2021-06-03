@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Axios from "axios";
 import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";

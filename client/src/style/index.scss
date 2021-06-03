@@ -1,0 +1,19 @@
+@import "./variables";
+
+* {   // reset
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--primary-color);
+  color: var(--text-dark-color);
+  font-family: sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 1000px;
+}

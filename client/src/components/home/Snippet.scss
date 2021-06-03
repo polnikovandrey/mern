@@ -1,0 +1,23 @@
+@import "./src/style/variables";
+
+.snippet {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  background: var(--light-color);
+  box-shadow: var(--box-shadow);
+
+  .title,
+  .description,
+  .code {
+    margin-bottom: 1rem;
+  }
+
+  .code {
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 1.3rem;
+    background: var(--dark-color);
+  }
+}
