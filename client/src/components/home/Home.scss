@@ -1,0 +1,9 @@
+@import "../../style/mixins";
+
+.home {
+  .button-editor-toggle {
+    @include button();
+
+    background-color: var(--light-color);
+  }
+}
