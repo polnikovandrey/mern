@@ -18,6 +18,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 // Setup routers
 // use() method makes possible to separate and group different rest-services to a number of folders/files.
 app.use('/snippet', require('./routers/snippetRouter'));
+app.use('/auth', require('./routers/userRouter'));
 
 mongoose.connect(process.env.MDB_CONNECT_STRING || '',
     { useNewUrlParser: true, useUnifiedTopology: true },
