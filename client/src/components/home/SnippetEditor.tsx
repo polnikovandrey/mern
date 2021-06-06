@@ -1,5 +1,6 @@
 import React, {FormEvent, useEffect, useState} from "react";
 import Axios from "axios";
+import "./SnippetEditor.scss";
 
 function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}: any): JSX.Element {
 
@@ -47,8 +48,8 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}: any
 				<input id="editor-description" type="text" value={editorDescription} onChange={(e) => setEditorDescription(e.target.value)}/>
 				<label htmlFor="editor-code">Code</label>
 				<textarea id="editor-code" value={editorCode} onChange={(e) => setEditorCode(e.target.value)}/>
-				<button type="submit">Save snippet</button>
-				<button type="button" onClick={() => closeEditor()}>Cancel</button>
+				<button className="button-save" type="submit">Save</button>
+				<button className="button-cancel" type="button" onClick={() => closeEditor()}>Cancel</button>
 			</form>
 		</div>
 	);
