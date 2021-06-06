@@ -1,5 +1,4 @@
 import Mongoose from "mongoose";
-import mongoose from "mongoose";
 
 const userSchema = new Mongoose.Schema({
 	email: {type: String, required: true},
@@ -8,6 +7,4 @@ const userSchema = new Mongoose.Schema({
 	timestamps: true
 });
 
-const User = Mongoose.model('user', userSchema);
-
-module.exports = User;
+export const User = Mongoose.model('user', userSchema);
