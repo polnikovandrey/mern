@@ -1,4 +1,5 @@
 @import "./src/style/variables";
+@import "./src/style/mixins";
 
 .snippet {
   margin: 1.5rem 0;
@@ -19,5 +20,22 @@
     font-family: monospace;
     font-size: 1.3rem;
     background: var(--dark-color);
+  }
+
+  .button-delete,
+  .button-edit {
+    @include button();
+
+    margin-right: 1rem;
+  }
+
+  .button-edit {
+    background: var(--dark-color);
+    color: var(--text-light-color);
+  }
+
+  .button-delete {
+    background: var(--danger-color);
+    color: var(--text-light-color);
   }
 }

@@ -20,8 +20,8 @@ function Snippet({snippet, getSnippets, editSnippet}: any): JSX.Element {
 					</code>
 				</pre>
 			)}
-			<button onClick={() => editSnippet(snippet)}>Edit</button>
-			<button onClick={deleteSnippet}>Delete</button>
+			<button className="button-edit" onClick={() => editSnippet(snippet)}>Edit</button>
+			<button className="button-delete" onClick={deleteSnippet}>Delete</button>
 		</div>
 	);
 }

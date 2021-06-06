@@ -1,0 +1,8 @@
+@mixin button() {
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
+}
