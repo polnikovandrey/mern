@@ -1,5 +1,6 @@
 @import "./variables";
 @import "./mixins";
+@import "./forms";
 
 * {   // reset
   margin: 0;
@@ -8,8 +9,7 @@
 }
 
 body {
-  //background: var(--primary-color);
-  background-color: orange;
+  background: var(--primary-color);
   color: var(--text-dark-color);
   font-family: sans-serif;
 }

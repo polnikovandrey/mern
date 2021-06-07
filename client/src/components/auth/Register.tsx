@@ -1,6 +1,7 @@
 import React, {FormEvent, useState} from "react";
 import {Link} from "react-router-dom";
 import Axios from "axios";
+import "./AuthForm.scss";
 
 function Register() {
 
@@ -21,14 +22,14 @@ function Register() {
 	return (
 		<div className="auth-form">
 			<h2>Register a new account</h2>
-			<form onSubmit={register}>
+			<form className="form" onSubmit={register}>
 				<label htmlFor="form-email">Email</label>
 				<input id="form-email" type="email" value={formEmail} onChange={(event) => setFormEmail(event.target.value)}/>
 				<label htmlFor="form-password">Password</label>
 				<input id="form-password" type="password" value={formPassword} onChange={(event) => setFormPassword(event.target.value)}/>
 				<label htmlFor="form-password-verify">Verify password</label>
 				<input id="form-password-verify" type="password" value={formPasswordVerify} onChange={(event) => setFormPasswordVerify(event.target.value)}/>
-				<button type="submit">Register</button>
+				<button className="button-submit" type="submit">Register</button>
 				<p>Already have an account? <Link to="/login">Login instead</Link></p>
 			</form>
 		</div>

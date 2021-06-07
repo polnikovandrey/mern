@@ -1,0 +1,17 @@
+@import "../../style/mixins";
+
+.auth-form {
+  @include card();
+
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+  }
+
+  .button-submit {
+    @include button();
+    margin-bottom: 1rem;
+    background: var(--dark-color);
+    color: var(--text-light-color);
+  }
+}
