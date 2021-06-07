@@ -1,4 +1,4 @@
-import express, {response, Router} from "express";
+import express, {Router} from "express";
 import {User} from "../models/userModel";
 import bcrypt from "bcryptjs";
 import jwt, {Secret} from "jsonwebtoken";
@@ -99,6 +99,19 @@ router.post('/login', async (request, response) => {
 
 	} catch(error) {
 		response.status(500).send();
+	}
+});
+
+router.get("/loggedIn", (request, response) => {
+	try {
+		const token = request.cookies.token;
+		if (!token) {
+			return response.json(null);
+		}
+		const validatedUser: { id: string } = jwt.verify(token, process.env.JWT_SECRET as Secret) as { id: string };
+		response.json(validatedUser.id);
+	} catch (error) {
+		return response.json(null);
 	}
 });
 
