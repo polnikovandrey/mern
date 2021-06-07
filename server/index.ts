@@ -14,7 +14,14 @@ app.listen(5000, () => console.log('Server started on port 5000'));
 
 // Run a function [express.json()] on any request (or a particular path if provided).
 app.use(express.json());
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(
+    cors(
+        {
+            origin: 'http://localhost:3000',
+            credentials: true
+        }
+    )
+);
 app.use(cookieParser());
 
 // Setup routers
