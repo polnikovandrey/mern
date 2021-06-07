@@ -19,13 +19,13 @@ function Navbar(): JSX.Element {
 				<h1>Snippet manager</h1>
 			</Link>
 			{
-				!user
+				user === null
 					? (
 						<>
 							<Link to="/login">Log in</Link>
 							<Link to="/register">Register</Link>
 						</>)
-					: <button className="button-logout" onClick={logout}>Log out</button>
+					: (user && <button className="button-logout" onClick={logout}>Log out</button>)
 			}
 		</div>
 	);

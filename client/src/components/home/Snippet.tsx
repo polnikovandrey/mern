@@ -5,8 +5,10 @@ import "./Snippet.scss";
 function Snippet({snippet, getSnippets, editSnippet}: any): JSX.Element {
 
 	async function deleteSnippet() {
-		await Axios.delete(`http://localhost:5000/snippet/${snippet._id}`);
-		getSnippets();
+		if (window.confirm("Do you want to delete the snippet?")) {
+			await Axios.delete(`http://localhost:5000/snippet/${snippet._id}`);
+			getSnippets();
+		}
 	}
 
 	return (

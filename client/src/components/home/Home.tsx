@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import Axios from "axios";
 import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";
@@ -13,8 +14,12 @@ function Home(): JSX.Element {
 	const { user } = useContext(UserContext);
 
 	useEffect(() => {
-		getSnippets();
-	}, []);
+		if (user) {
+			getSnippets();
+		} else {
+			setSnippets([]);
+		}
+	}, [user]);
 
 	async function getSnippets() {
 		const snippetsResponse = await Axios.get('http://localhost:5000/snippet/');
@@ -42,7 +47,18 @@ function Home(): JSX.Element {
 			{snippetEditorOpen && (
 				<SnippetEditor setSnippetEditorOpen={setSnippetEditorOpen} getSnippets={getSnippets} editSnippetData={editSnippetData}/>
 			)}
-			{renderSnippets()}
+			{snippets.length > 0
+				? renderSnippets()
+				: (user && <p className="no-snippets-message">No snippets have been added</p>)
+			}
+			{
+				user === null && (
+					<div className="no-user-message">
+						<h2>Welcome to the Snippet Manager</h2>
+						<Link to="/register">Register here</Link>
+					</div>
+				)
+			}
 		</div>
 	);
 }
