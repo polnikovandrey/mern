@@ -17,7 +17,7 @@ function UserContextProvider(properties: any): JSX.Element {
 	}, []);
 
 	return (
-		<UserContext.Provider value={user}>
+		<UserContext.Provider value={ { user, getUser } }>
 			{properties.children}
 		</UserContext.Provider>
 	);
