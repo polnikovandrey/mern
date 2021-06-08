@@ -4,6 +4,7 @@ import Axios from "axios";
 import "./AuthForm.scss";
 import UserContext from "../../context/UserContext";
 import ErrorMessage from "../misc/ErrorMessage";
+import domain from "../../util/domain";
 
 function Register() {
 
@@ -23,7 +24,7 @@ function Register() {
 			passwordVerify: formPasswordVerify
 		};
 		try {
-			await Axios.post("http://localhost:5000/auth/", registerData);
+			await Axios.post(`${domain}/auth/`, registerData);
 		} catch(error) {
 			if (error.response) {
 				if (error.response.data.errorMessage) {

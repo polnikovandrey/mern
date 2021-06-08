@@ -5,6 +5,7 @@ import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";
 import "./Home.scss";
 import UserContext from "../../context/UserContext";
+import domain from "../../util/domain";
 
 function Home(): JSX.Element {
 	const [snippets, setSnippets] = useState([]);
@@ -22,7 +23,7 @@ function Home(): JSX.Element {
 	}, [user]);
 
 	async function getSnippets() {
-		const snippetsResponse = await Axios.get('http://localhost:5000/snippet/');
+		const snippetsResponse = await Axios.get(`${domain}/snippet/`);
 		setSnippets(snippetsResponse.data);
 	}
 

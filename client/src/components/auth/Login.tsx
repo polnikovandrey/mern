@@ -4,6 +4,7 @@ import Axios from "axios";
 import "./AuthForm.scss";
 import UserContext from "../../context/UserContext";
 import ErrorMessage from "../misc/ErrorMessage";
+import domain from "../../util/domain";
 
 function Login() {
 
@@ -22,7 +23,7 @@ function Login() {
 			password: formPassword
 		};
 		try {
-			await Axios.post("http://localhost:5000/auth/login", loginData);
+			await Axios.post(`"${domain}/auth/login`, loginData);
 		} catch(error) {
 			if (error.response) {
 				if (error.response.data.errorMessage) {

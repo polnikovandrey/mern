@@ -2,6 +2,7 @@ import React, {FormEvent, useEffect, useState} from "react";
 import Axios from "axios";
 import "./SnippetEditor.scss";
 import ErrorMessage from "../misc/ErrorMessage";
+import domain from "../../util/domain";
 
 function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}: any): JSX.Element {
 
@@ -27,9 +28,9 @@ function SnippetEditor({getSnippets, setSnippetEditorOpen, editSnippetData}: any
 		}
 		try {
 			if (editSnippetData) {
-				await Axios.put(`http://localhost:5000/snippet/${editSnippetData._id}`, snippetData);
+				await Axios.put(`${domain}/snippet/${editSnippetData._id}`, snippetData);
 			} else {
-				await Axios.post("http://localhost:5000/snippet", snippetData);
+				await Axios.post(`${domain}/snippet`, snippetData);
 			}
 		} catch(error) {
 			if (error.response) {
