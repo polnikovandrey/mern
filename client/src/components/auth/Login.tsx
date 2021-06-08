@@ -23,7 +23,7 @@ function Login() {
 			password: formPassword
 		};
 		try {
-			await Axios.post(`"${domain}/auth/login`, loginData);
+			await Axios.post(`${domain}/auth/login`, loginData);
 		} catch(error) {
 			if (error.response) {
 				if (error.response.data.errorMessage) {
